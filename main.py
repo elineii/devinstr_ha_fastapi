@@ -3,7 +3,7 @@ from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 import datetime
 
-from typing import Optional
+from typing import List
 
 app = FastAPI()
 
@@ -54,7 +54,7 @@ async def get_post() -> Timestamp:
 
 
 @app.get('/dog')
-async def get_dogs(kind: DogType = None) -> list[Dog]:
+async def get_dogs(kind: DogType = None) -> List[Dog]:
     return [dog for dog in dogs_db.values() if kind is None or dog.kind == kind] 
         
 
